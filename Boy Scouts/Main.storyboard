@@ -933,15 +933,15 @@ Source: www.nhscouting.org</string>
     <resources>
         <image name="DWCBS.png" width="400" height="64"/>
         <image name="DWCheaderlogo.png" width="52" height="60"/>
-        <image name="center_direction-25.png" width="25" height="25"/>
-        <image name="checkmark-25.png" width="25" height="25"/>
-        <image name="delete_sign-25.png" width="25" height="25"/>
-        <image name="email.png" width="25" height="25"/>
-        <image name="facebook.png" width="25" height="25"/>
-        <image name="globe-25.png" width="25" height="25"/>
-        <image name="icon_256.png" width="25" height="25"/>
-        <image name="twitter.png" width="25" height="25"/>
-        <image name="youtube.png" width="25" height="25"/>
+        <image name="center_direction-25.png" width="32" height="32"/>
+        <image name="checkmark-25.png" width="32" height="32"/>
+        <image name="delete_sign-25.png" width="32" height="32"/>
+        <image name="email.png" width="512" height="512"/>
+        <image name="facebook.png" width="512" height="512"/>
+        <image name="globe-25.png" width="512" height="512"/>
+        <image name="icon_256.png" width="512" height="512"/>
+        <image name="twitter.png" width="512" height="512"/>
+        <image name="youtube.png" width="512" height="512"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
