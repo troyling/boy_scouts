@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		752A1E0D192684A800D211B1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 752A1E0C192684A800D211B1 /* MapKit.framework */; };
 		753EF4CE19281A9D00733F0D /* NHSCAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 753EF4CD19281A9D00733F0D /* NHSCAboutUsViewController.m */; };
-		753EF4D0192838FB00733F0D /* DWCheaderlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 753EF4CF192838FB00733F0D /* DWCheaderlogo.png */; };
 		753EF4D319283A4C00733F0D /* NHSCContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 753EF4D219283A4C00733F0D /* NHSCContactUsViewController.m */; };
 		758C34FA1928F7AD003E9E43 /* 200px-Boy_Scouts_of_America_corporate_trademark.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 758C34F91928F7AD003E9E43 /* 200px-Boy_Scouts_of_America_corporate_trademark.svg.png */; };
-		758C34FE1928FC39003E9E43 /* Base.png in Resources */ = {isa = PBXBuildFile; fileRef = 758C34FD1928FC39003E9E43 /* Base.png */; };
+		B4CBE89219A22C800036DEF6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CBE89119A22C800036DEF6 /* StoreKit.framework */; };
+		B4CBE89419A230A10036DEF6 /* DWCheaderlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CBE89319A230A10036DEF6 /* DWCheaderlogo.png */; };
+		B4CBE89719A230DC0036DEF6 /* Base.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CBE89519A230DC0036DEF6 /* Base.png */; };
+		B4CBE89819A230DC0036DEF6 /* DWCBS.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CBE89619A230DC0036DEF6 /* DWCBS.png */; };
 		D63DB16E19284EDA00A3BA07 /* NHSCAddressHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D63DB16D19284EDA00A3BA07 /* NHSCAddressHelper.m */; };
 		D63DB1731928570600A3BA07 /* NHSCDonationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63DB1721928570600A3BA07 /* NHSCDonationDetailsViewController.m */; };
 		D63DB17619286C5300A3BA07 /* NHSCNewsMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63DB17519286C5300A3BA07 /* NHSCNewsMainTableViewController.m */; };
@@ -23,7 +25,6 @@
 		D665FD4F1928964900AEB3A5 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = D665FD4A1928964900AEB3A5 /* twitter.png */; };
 		D665FD501928964900AEB3A5 /* youtube.png in Resources */ = {isa = PBXBuildFile; fileRef = D665FD4B1928964900AEB3A5 /* youtube.png */; };
 		D665FD52192897D900AEB3A5 /* globe-25.png in Resources */ = {isa = PBXBuildFile; fileRef = D665FD51192897D900AEB3A5 /* globe-25.png */; };
-		D665FD56192899AB00AEB3A5 /* DWCBS.png in Resources */ = {isa = PBXBuildFile; fileRef = D665FD55192899AB00AEB3A5 /* DWCBS.png */; };
 		D66B27611928848B0060ED61 /* NHSCPopcornDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D66B27601928848B0060ED61 /* NHSCPopcornDetailsViewController.m */; };
 		D6821BCA19265B5400C079A7 /* AMSlideMenuContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D6821BBC19265B5400C079A7 /* AMSlideMenuContentSegue.m */; };
 		D6821BCB19265B5400C079A7 /* AMSlideMenuLeftMenuSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D6821BBE19265B5400C079A7 /* AMSlideMenuLeftMenuSegue.m */; };
@@ -45,7 +46,6 @@
 		D6821BEB1926926900C079A7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6821BEA1926926900C079A7 /* MobileCoreServices.framework */; };
 		D6821BED1926927000C079A7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6821BEC1926927000C079A7 /* QuartzCore.framework */; };
 		D6821BEF1926927600C079A7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6821BEE1926927600C079A7 /* Security.framework */; };
-		D6821BF11926928200C079A7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6821BF01926928200C079A7 /* StoreKit.framework */; };
 		D6821BF31926928800C079A7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6821BF21926928800C079A7 /* SystemConfiguration.framework */; };
 		D6821BF61926F4CE00C079A7 /* NHSCPopcornMapLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6821BF51926F4CE00C079A7 /* NHSCPopcornMapLocationViewController.m */; };
 		D6821BF91926F63E00C079A7 /* NHSCPlaceAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D6821BF81926F63E00C079A7 /* NHSCPlaceAnnotation.m */; };
@@ -85,11 +85,13 @@
 		752A1E0C192684A800D211B1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		753EF4CC19281A9D00733F0D /* NHSCAboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCAboutUsViewController.h; sourceTree = "<group>"; };
 		753EF4CD19281A9D00733F0D /* NHSCAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHSCAboutUsViewController.m; sourceTree = "<group>"; };
-		753EF4CF192838FB00733F0D /* DWCheaderlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DWCheaderlogo.png; sourceTree = "<group>"; };
 		753EF4D119283A4C00733F0D /* NHSCContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCContactUsViewController.h; sourceTree = "<group>"; };
 		753EF4D219283A4C00733F0D /* NHSCContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHSCContactUsViewController.m; sourceTree = "<group>"; };
 		758C34F91928F7AD003E9E43 /* 200px-Boy_Scouts_of_America_corporate_trademark.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "200px-Boy_Scouts_of_America_corporate_trademark.svg.png"; sourceTree = "<group>"; };
-		758C34FD1928FC39003E9E43 /* Base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Base.png; sourceTree = "<group>"; };
+		B4CBE89119A22C800036DEF6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B4CBE89319A230A10036DEF6 /* DWCheaderlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DWCheaderlogo.png; sourceTree = "<group>"; };
+		B4CBE89519A230DC0036DEF6 /* Base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Base.png; sourceTree = "<group>"; };
+		B4CBE89619A230DC0036DEF6 /* DWCBS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DWCBS.png; sourceTree = "<group>"; };
 		D63DB16C19284EDA00A3BA07 /* NHSCAddressHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCAddressHelper.h; sourceTree = "<group>"; };
 		D63DB16D19284EDA00A3BA07 /* NHSCAddressHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHSCAddressHelper.m; sourceTree = "<group>"; };
 		D63DB1711928570600A3BA07 /* NHSCDonationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCDonationDetailsViewController.h; sourceTree = "<group>"; };
@@ -104,7 +106,6 @@
 		D665FD4A1928964900AEB3A5 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
 		D665FD4B1928964900AEB3A5 /* youtube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube.png; sourceTree = "<group>"; };
 		D665FD51192897D900AEB3A5 /* globe-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "globe-25.png"; sourceTree = "<group>"; };
-		D665FD55192899AB00AEB3A5 /* DWCBS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DWCBS.png; sourceTree = "<group>"; };
 		D66B275F1928848B0060ED61 /* NHSCPopcornDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCPopcornDetailsViewController.h; sourceTree = "<group>"; };
 		D66B27601928848B0060ED61 /* NHSCPopcornDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHSCPopcornDetailsViewController.m; sourceTree = "<group>"; };
 		D6821BBB19265B5400C079A7 /* AMSlideMenuContentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSlideMenuContentSegue.h; sourceTree = "<group>"; };
@@ -137,7 +138,6 @@
 		D6821BEA1926926900C079A7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D6821BEC1926927000C079A7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D6821BEE1926927600C079A7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		D6821BF01926928200C079A7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D6821BF21926928800C079A7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D6821BF41926F4CE00C079A7 /* NHSCPopcornMapLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCPopcornMapLocationViewController.h; sourceTree = "<group>"; };
 		D6821BF51926F4CE00C079A7 /* NHSCPopcornMapLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHSCPopcornMapLocationViewController.m; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6821BF31926928800C079A7 /* SystemConfiguration.framework in Frameworks */,
-				D6821BF11926928200C079A7 /* StoreKit.framework in Frameworks */,
+				B4CBE89219A22C800036DEF6 /* StoreKit.framework in Frameworks */,
 				D6821BEF1926927600C079A7 /* Security.framework in Frameworks */,
 				D6821BED1926927000C079A7 /* QuartzCore.framework in Frameworks */,
 				D6821BEB1926926900C079A7 /* MobileCoreServices.framework in Frameworks */,
@@ -210,6 +210,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B4CBE89919A244E50036DEF6 /* popcorn */ = {
+			isa = PBXGroup;
+			children = (
+				D6821BF41926F4CE00C079A7 /* NHSCPopcornMapLocationViewController.h */,
+				D6821BF51926F4CE00C079A7 /* NHSCPopcornMapLocationViewController.m */,
+				D6B1AC281928E5BB000EF655 /* NHSCPopcornNoteViewController.h */,
+				D6B1AC291928E5BB000EF655 /* NHSCPopcornNoteViewController.m */,
+				D66B275F1928848B0060ED61 /* NHSCPopcornDetailsViewController.h */,
+				D66B27601928848B0060ED61 /* NHSCPopcornDetailsViewController.m */,
+			);
+			name = popcorn;
+			sourceTree = "<group>";
+		};
+		B4CBE89B19A244FF0036DEF6 /* food donation */ = {
+			isa = PBXGroup;
+			children = (
+				D68E31921928170B0093250A /* NHSCDonationMapLocationViewController.h */,
+				D68E31931928170B0093250A /* NHSCDonationMapLocationViewController.m */,
+				D6B1AC2B1928F6EC000EF655 /* NHSCDonationNoteViewController.h */,
+				D6B1AC2C1928F6EC000EF655 /* NHSCDonationNoteViewController.m */,
+				D63DB1711928570600A3BA07 /* NHSCDonationDetailsViewController.h */,
+				D63DB1721928570600A3BA07 /* NHSCDonationDetailsViewController.m */,
+			);
+			name = "food donation";
+			sourceTree = "<group>";
+		};
+		B4CBE89D19A2450E0036DEF6 /* about us */ = {
+			isa = PBXGroup;
+			children = (
+				753EF4CC19281A9D00733F0D /* NHSCAboutUsViewController.h */,
+				753EF4CD19281A9D00733F0D /* NHSCAboutUsViewController.m */,
+			);
+			name = "about us";
+			sourceTree = "<group>";
+		};
+		B4CBE89E19A245150036DEF6 /* contact us */ = {
+			isa = PBXGroup;
+			children = (
+				753EF4D119283A4C00733F0D /* NHSCContactUsViewController.h */,
+				753EF4D219283A4C00733F0D /* NHSCContactUsViewController.m */,
+			);
+			name = "contact us";
+			sourceTree = "<group>";
+		};
 		D63DB16F19284FEE00A3BA07 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,31 +318,19 @@
 		D691186D1926418F00925BB0 = {
 			isa = PBXGroup;
 			children = (
-				D6B1AC2B1928F6EC000EF655 /* NHSCDonationNoteViewController.h */,
-				D6B1AC2C1928F6EC000EF655 /* NHSCDonationNoteViewController.m */,
-				D6B1AC281928E5BB000EF655 /* NHSCPopcornNoteViewController.h */,
-				D6B1AC291928E5BB000EF655 /* NHSCPopcornNoteViewController.m */,
-				D66B275F1928848B0060ED61 /* NHSCPopcornDetailsViewController.h */,
-				D66B27601928848B0060ED61 /* NHSCPopcornDetailsViewController.m */,
-				D63DB1711928570600A3BA07 /* NHSCDonationDetailsViewController.h */,
-				D63DB1721928570600A3BA07 /* NHSCDonationDetailsViewController.m */,
+				B4CBE89E19A245150036DEF6 /* contact us */,
+				B4CBE89D19A2450E0036DEF6 /* about us */,
+				B4CBE89B19A244FF0036DEF6 /* food donation */,
+				B4CBE89919A244E50036DEF6 /* popcorn */,
 				D6668B181928715200B3309A /* NewsViews */,
 				D63DB1701928500B00A3BA07 /* TestLocations */,
 				D63DB16F19284FEE00A3BA07 /* Helpers */,
 				D6821BFA1926F64700C079A7 /* Models */,
-				D6821BF41926F4CE00C079A7 /* NHSCPopcornMapLocationViewController.h */,
-				D6821BF51926F4CE00C079A7 /* NHSCPopcornMapLocationViewController.m */,
-				D68E31921928170B0093250A /* NHSCDonationMapLocationViewController.h */,
-				D68E31931928170B0093250A /* NHSCDonationMapLocationViewController.m */,
 				D6821BD919266B1B00C079A7 /* NHSCLeftMenuTableViewController.h */,
 				D6821BDA19266B1B00C079A7 /* NHSCLeftMenuTableViewController.m */,
 				D6821BD31926689900C079A7 /* NHSCMainViewController.h */,
 				D6821BD41926689900C079A7 /* NHSCMainViewController.m */,
 				D6821BD119265B6400C079A7 /* Main.storyboard */,
-				753EF4D119283A4C00733F0D /* NHSCContactUsViewController.h */,
-				753EF4D219283A4C00733F0D /* NHSCContactUsViewController.m */,
-				753EF4CC19281A9D00733F0D /* NHSCAboutUsViewController.h */,
-				753EF4CD19281A9D00733F0D /* NHSCAboutUsViewController.m */,
 				D6821BBA19265B5400C079A7 /* AMSlideMenu */,
 				D691187F1926418F00925BB0 /* Boy Scouts */,
 				D69118981926418F00925BB0 /* Boy ScoutsTests */,
@@ -319,9 +351,9 @@
 		D69118781926418F00925BB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B4CBE89119A22C800036DEF6 /* StoreKit.framework */,
 				752A1E0C192684A800D211B1 /* MapKit.framework */,
 				D6821BF21926928800C079A7 /* SystemConfiguration.framework */,
-				D6821BF01926928200C079A7 /* StoreKit.framework */,
 				D6821BEE1926927600C079A7 /* Security.framework */,
 				D6821BEC1926927000C079A7 /* QuartzCore.framework */,
 				D6821BEA1926926900C079A7 /* MobileCoreServices.framework */,
@@ -352,16 +384,16 @@
 		D69118801926418F00925BB0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				758C34FD1928FC39003E9E43 /* Base.png */,
+				B4CBE89519A230DC0036DEF6 /* Base.png */,
+				B4CBE89619A230DC0036DEF6 /* DWCBS.png */,
+				B4CBE89319A230A10036DEF6 /* DWCheaderlogo.png */,
 				758C34F91928F7AD003E9E43 /* 200px-Boy_Scouts_of_America_corporate_trademark.svg.png */,
-				D665FD55192899AB00AEB3A5 /* DWCBS.png */,
 				D665FD51192897D900AEB3A5 /* globe-25.png */,
 				D665FD471928964900AEB3A5 /* email.png */,
 				D665FD481928964900AEB3A5 /* facebook.png */,
 				D665FD491928964900AEB3A5 /* icon_256.png */,
 				D665FD4A1928964900AEB3A5 /* twitter.png */,
 				D665FD4B1928964900AEB3A5 /* youtube.png */,
-				753EF4CF192838FB00733F0D /* DWCheaderlogo.png */,
 				D68E3190192813DF0093250A /* delete_sign-25.png */,
 				D68E318E192813440093250A /* checkmark-25.png */,
 				D68E31871927D13A0093250A /* center_direction-25.png */,
@@ -444,8 +476,11 @@
 				ORGANIZATIONNAME = "Daniel Webster Council Boy Scouts of America";
 				TargetAttributes = {
 					D69118751926418F00925BB0 = {
-						DevelopmentTeam = 5MZDR8X5N4;
+						DevelopmentTeam = YXU7589MR8;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.iOS = {
 								enabled = 1;
 							};
@@ -481,9 +516,6 @@
 			files = (
 				D68E3191192813DF0093250A /* delete_sign-25.png in Resources */,
 				D6821BD219265B6400C079A7 /* Main.storyboard in Resources */,
-				758C34FE1928FC39003E9E43 /* Base.png in Resources */,
-				753EF4D0192838FB00733F0D /* DWCheaderlogo.png in Resources */,
-				D665FD56192899AB00AEB3A5 /* DWCBS.png in Resources */,
 				758C34FA1928F7AD003E9E43 /* 200px-Boy_Scouts_of_America_corporate_trademark.svg.png in Resources */,
 				D68E318F192813440093250A /* checkmark-25.png in Resources */,
 				D6821C011927036D00C079A7 /* UIButtonBarRefresh.png in Resources */,
@@ -492,6 +524,8 @@
 				D6821C021927036D00C079A7 /* UIButtonBarRefresh@2x.png in Resources */,
 				D665FD4C1928964900AEB3A5 /* email.png in Resources */,
 				D6821BDE1926839D00C079A7 /* simpleMenuButton.png in Resources */,
+				B4CBE89719A230DC0036DEF6 /* Base.png in Resources */,
+				B4CBE89419A230A10036DEF6 /* DWCheaderlogo.png in Resources */,
 				D665FD4D1928964900AEB3A5 /* facebook.png in Resources */,
 				D665FD501928964900AEB3A5 /* youtube.png in Resources */,
 				D691188C1926418F00925BB0 /* Images.xcassets in Resources */,
@@ -499,6 +533,7 @@
 				D665FD4F1928964900AEB3A5 /* twitter.png in Resources */,
 				D665FD4E1928964900AEB3A5 /* icon_256.png in Resources */,
 				D68E31881927D13A0093250A /* center_direction-25.png in Resources */,
+				B4CBE89819A230DC0036DEF6 /* DWCBS.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,7 +690,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-3";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -676,7 +711,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-3";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
