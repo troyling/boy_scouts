@@ -105,7 +105,7 @@ NSDate *dateToPickup;
     NSString *stringFromDate = [formatter stringFromDate:dateToPickup];
     dateText.text = stringFromDate;
     
-    if (note) {
+    if ([note length] != 0) {
         // sale text
         [noteText.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
         [noteText.layer setBorderWidth:2.0];
@@ -159,9 +159,9 @@ NSDate *dateToPickup;
 {
     if([[segue identifier] isEqualToString:@"donationNote"]) {
         // set the address for query
-        NHSCDonationNoteViewController *note = [segue destinationViewController];
-        note.annotationObj = annotationObj;
-        note.parent = self;
+        NHSCDonationNoteViewController *noteViewController = [segue destinationViewController];
+        noteViewController.annotationObj = annotationObj;
+        noteViewController.parent = self;
     }
 }
 

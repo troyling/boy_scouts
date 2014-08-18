@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		752A1E0D192684A800D211B1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 752A1E0C192684A800D211B1 /* MapKit.framework */; };
 		753EF4CE19281A9D00733F0D /* NHSCAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 753EF4CD19281A9D00733F0D /* NHSCAboutUsViewController.m */; };
 		753EF4D319283A4C00733F0D /* NHSCContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 753EF4D219283A4C00733F0D /* NHSCContactUsViewController.m */; };
 		758C34FA1928F7AD003E9E43 /* 200px-Boy_Scouts_of_America_corporate_trademark.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 758C34F91928F7AD003E9E43 /* 200px-Boy_Scouts_of_America_corporate_trademark.svg.png */; };
-		B4CBE89219A22C800036DEF6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CBE89119A22C800036DEF6 /* StoreKit.framework */; };
 		B4CBE89419A230A10036DEF6 /* DWCheaderlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CBE89319A230A10036DEF6 /* DWCheaderlogo.png */; };
 		B4CBE89719A230DC0036DEF6 /* Base.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CBE89519A230DC0036DEF6 /* Base.png */; };
 		B4CBE89819A230DC0036DEF6 /* DWCBS.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CBE89619A230DC0036DEF6 /* DWCBS.png */; };
+		B4CBE8A019A252700036DEF6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CBE89F19A252700036DEF6 /* MapKit.framework */; };
 		D63DB16E19284EDA00A3BA07 /* NHSCAddressHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D63DB16D19284EDA00A3BA07 /* NHSCAddressHelper.m */; };
 		D63DB1731928570600A3BA07 /* NHSCDonationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63DB1721928570600A3BA07 /* NHSCDonationDetailsViewController.m */; };
 		D63DB17619286C5300A3BA07 /* NHSCNewsMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63DB17519286C5300A3BA07 /* NHSCNewsMainTableViewController.m */; };
@@ -82,16 +81,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		752A1E0C192684A800D211B1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		753EF4CC19281A9D00733F0D /* NHSCAboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCAboutUsViewController.h; sourceTree = "<group>"; };
 		753EF4CD19281A9D00733F0D /* NHSCAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHSCAboutUsViewController.m; sourceTree = "<group>"; };
 		753EF4D119283A4C00733F0D /* NHSCContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCContactUsViewController.h; sourceTree = "<group>"; };
 		753EF4D219283A4C00733F0D /* NHSCContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHSCContactUsViewController.m; sourceTree = "<group>"; };
 		758C34F91928F7AD003E9E43 /* 200px-Boy_Scouts_of_America_corporate_trademark.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "200px-Boy_Scouts_of_America_corporate_trademark.svg.png"; sourceTree = "<group>"; };
-		B4CBE89119A22C800036DEF6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B4CBE89319A230A10036DEF6 /* DWCheaderlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DWCheaderlogo.png; sourceTree = "<group>"; };
 		B4CBE89519A230DC0036DEF6 /* Base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Base.png; sourceTree = "<group>"; };
 		B4CBE89619A230DC0036DEF6 /* DWCBS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DWCBS.png; sourceTree = "<group>"; };
+		B4CBE89F19A252700036DEF6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D63DB16C19284EDA00A3BA07 /* NHSCAddressHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCAddressHelper.h; sourceTree = "<group>"; };
 		D63DB16D19284EDA00A3BA07 /* NHSCAddressHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHSCAddressHelper.m; sourceTree = "<group>"; };
 		D63DB1711928570600A3BA07 /* NHSCDonationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCDonationDetailsViewController.h; sourceTree = "<group>"; };
@@ -181,17 +179,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6821BF31926928800C079A7 /* SystemConfiguration.framework in Frameworks */,
-				B4CBE89219A22C800036DEF6 /* StoreKit.framework in Frameworks */,
 				D6821BEF1926927600C079A7 /* Security.framework in Frameworks */,
 				D6821BED1926927000C079A7 /* QuartzCore.framework in Frameworks */,
 				D6821BEB1926926900C079A7 /* MobileCoreServices.framework in Frameworks */,
 				D6821BE91926926100C079A7 /* libz.dylib in Frameworks */,
 				D6821BE71926925800C079A7 /* CoreLocation.framework in Frameworks */,
 				D691187C1926418F00925BB0 /* CoreGraphics.framework in Frameworks */,
+				B4CBE8A019A252700036DEF6 /* MapKit.framework in Frameworks */,
 				D6821BE51926924600C079A7 /* CFNetwork.framework in Frameworks */,
 				D6821BE31926923900C079A7 /* AudioToolbox.framework in Frameworks */,
 				D691187E1926418F00925BB0 /* UIKit.framework in Frameworks */,
-				752A1E0D192684A800D211B1 /* MapKit.framework in Frameworks */,
 				D6821BE1192691D400C079A7 /* Parse.framework in Frameworks */,
 				D691187A1926418F00925BB0 /* Foundation.framework in Frameworks */,
 			);
@@ -351,8 +348,7 @@
 		D69118781926418F00925BB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B4CBE89119A22C800036DEF6 /* StoreKit.framework */,
-				752A1E0C192684A800D211B1 /* MapKit.framework */,
+				B4CBE89F19A252700036DEF6 /* MapKit.framework */,
 				D6821BF21926928800C079A7 /* SystemConfiguration.framework */,
 				D6821BEE1926927600C079A7 /* Security.framework */,
 				D6821BEC1926927000C079A7 /* QuartzCore.framework */,
@@ -479,7 +475,7 @@
 						DevelopmentTeam = YXU7589MR8;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.iOS = {
 								enabled = 1;
@@ -648,7 +644,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -680,7 +676,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -700,6 +696,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Boy Scouts/Boy Scouts-Prefix.pch";
 				INFOPLIST_FILE = "Boy Scouts/Boy Scouts-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -721,6 +718,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Boy Scouts/Boy Scouts-Prefix.pch";
 				INFOPLIST_FILE = "Boy Scouts/Boy Scouts-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

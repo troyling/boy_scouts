@@ -117,7 +117,7 @@ NSDate *date;
         saleText.textColor = [UIColor colorWithRed:1.00 green:0.20 blue:0.22 alpha:1];
     }
     
-    if (note) {
+    if ([note length] != 0) {
         // sale text
         [saleText.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
         [saleText.layer setBorderWidth:2.0];
@@ -154,9 +154,9 @@ NSDate *date;
 {
     if([[segue identifier] isEqualToString:@"popcornNote"]) {
         // set the address for query
-        NHSCPopcornNoteViewController *note = [segue destinationViewController];
-        note.annotationObj = annotationObj;
-        note.parent = self;
+        NHSCPopcornNoteViewController *noteViewController = [segue destinationViewController];
+        noteViewController.annotationObj = annotationObj;
+        noteViewController.parent = self;
     }
 }
 

@@ -18,6 +18,7 @@
 @synthesize parent;
 @synthesize noteText;
 
+// original copy of the text string
 NSString *note;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -71,19 +72,28 @@ NSString *note;
         annotationObj[@"note"] = noteText.text;
         [annotationObj saveInBackground];
         
-        // update the parent view before going back
-        parent.note = noteText.text;
-        parent.noteLabel.text = @"Note";
-        parent.noteText.text = noteText.text;
-        
-        [parent.noteText.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
-        [parent.noteText.layer setBorderWidth:2.0];
-        
-        //The rounded corner part, where you specify your view's corner radius:
-        parent.noteText.layer.cornerRadius = 5;
-        parent.noteText.clipsToBounds = YES;
+        // remove the text view if note is empty
+        if ([noteText.text length] == 0) {
+            // no text
+            [parent.noteLabel setHidden:YES];
+            [parent.noteText setHidden:YES];
+        } else {
+            [parent.noteLabel setHidden:NO];
+            [parent.noteText setHidden:NO];
+            
+            // update the parent view before going back
+            parent.note = noteText.text;
+            parent.noteLabel.text = @"Note";
+            parent.noteText.text = noteText.text;
+            
+            [parent.noteText.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
+            [parent.noteText.layer setBorderWidth:2.0];
+            
+            //The rounded corner part, where you specify your view's corner radius:
+            parent.noteText.layer.cornerRadius = 5;
+            parent.noteText.clipsToBounds = YES;
+        }
     }
-    
     
     [self dismissViewControllerAnimated:YES completion:nil];
     

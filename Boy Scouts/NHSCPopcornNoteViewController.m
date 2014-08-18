@@ -65,17 +65,29 @@ NSString *note;
         annotationObj[@"note"] = noteText.text;
         [annotationObj saveInBackground];
         
-        // update the parent view before going back
-        parent.note = noteText.text;
-        parent.noteLabel.text = @"Note";
-        parent.saleText.text = noteText.text;
+        // remove the text view if note is empty
+        if ([noteText.text length] == 0) {
+            // no text - hide the label and text view
+            [parent.noteLabel setHidden:YES];
+            [parent.saleText setHidden:YES];
+        } else {
+            [parent.noteLabel setHidden:NO];
+            [parent.saleText setHidden:NO];
+            
+            // update the parent view before going back
+            parent.note = noteText.text;
+            parent.noteLabel.text = @"Note";
+            parent.saleText.text = noteText.text;
+            
+            [parent.saleText.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
+            [parent.saleText.layer setBorderWidth:2.0];
+            
+            //The rounded corner part, where you specify your view's corner radius:
+            parent.saleText.layer.cornerRadius = 5;
+            parent.saleText.clipsToBounds = YES;
+        }
         
-        [parent.saleText.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
-        [parent.saleText.layer setBorderWidth:2.0];
         
-        //The rounded corner part, where you specify your view's corner radius:
-        parent.saleText.layer.cornerRadius = 5;
-        parent.saleText.clipsToBounds = YES;
     }
     
     
