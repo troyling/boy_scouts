@@ -8,6 +8,7 @@
 
 #import "NHSCPopcornDetailsViewController.h"
 #import "NHSCPopcornNoteViewController.h"
+#import "NHSCUITheme.h"
 
 @interface NHSCPopcornDetailsViewController ()
 
@@ -68,7 +69,6 @@ NSDate *date;
                     // set up the view
                     [self loadAnnotation];
                 }
-                
             }
         } else {
             // Log details of the failure
@@ -104,17 +104,18 @@ NSDate *date;
     NSString *stringFromDate = [formatter stringFromDate:date];
     dateText.text = stringFromDate;
     
+    // Set the theme for the app
     if ([annotationObj[@"reaction"]  isEqual: @YES]) {
         // set text color green
-        addressText.textColor = [UIColor colorWithRed:0.33 green:0.85 blue:0.11 alpha:1];
-        dateText.textColor = [UIColor colorWithRed:0.33 green:0.85 blue:0.11 alpha:1];
-        saleText.textColor = [UIColor colorWithRed:0.33 green:0.85 blue:0.11 alpha:1];
+        
+        // set bar color
+        [self.navigationController.navigationBar setBarTintColor:[NHSCUITheme getCustomizedUIColorGreen]];
         
     } else {
         // set text color red
-        addressText.textColor = [UIColor colorWithRed:1.00 green:0.20 blue:0.22 alpha:1];
-        dateText.textColor = [UIColor colorWithRed:1.00 green:0.20 blue:0.22 alpha:1];
-        saleText.textColor = [UIColor colorWithRed:1.00 green:0.20 blue:0.22 alpha:1];
+        
+        // set bar color
+        [self.navigationController.navigationBar setBarTintColor:[NHSCUITheme getCustomizedUIColorRed]];
     }
     
     if ([note length] != 0) {
@@ -158,6 +159,17 @@ NSDate *date;
         noteViewController.annotationObj = annotationObj;
         noteViewController.parent = self;
     }
+}
+
+// Set the navigation bar back to normal when the view is being dismissed
+-(void) viewWillDisappear:(BOOL)animated {
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        // set bar color back
+        self.navigationController.navigationBar.barTintColor = nil;
+        self.navigationController.navigationBar.translucent = YES;
+    }
+    
+    [super viewWillDisappear:animated];
 }
 
 

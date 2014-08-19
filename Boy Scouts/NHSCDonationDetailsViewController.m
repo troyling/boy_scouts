@@ -8,6 +8,7 @@
 
 #import "NHSCDonationDetailsViewController.h"
 #import "NHSCDonationNoteViewController.h"
+#import "NHSCUITheme.h"
 #import  <QuartzCore/QuartzCore.h>
 #import <Parse/Parse.h>
 
@@ -41,6 +42,10 @@ NSDate *dateToPickup;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // set nav bar color
+    [self.navigationController.navigationBar setBarTintColor:[NHSCUITheme getCustomizedUIColorPurple]];
+    
     // Do any additional setup after loading the view.
     [self findDonnationFromDB];
 }
@@ -135,15 +140,15 @@ NSDate *dateToPickup;
     }];
 }
 
-/*
- * this function is executed when user clicks the back button
- */
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    if (self.isMovingFromParentViewController || self.isBeingDismissed) {
-        NSLog(@"%@", self.parentViewController);
+// Set the navigation bar back to normal when the view is being dismissed
+-(void) viewWillDisappear:(BOOL)animated {
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        // set bar color back
+        self.navigationController.navigationBar.barTintColor = nil;
+        self.navigationController.navigationBar.translucent = YES;
     }
+    
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning

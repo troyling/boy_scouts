@@ -14,6 +14,8 @@
 		B4CBE89719A230DC0036DEF6 /* Base.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CBE89519A230DC0036DEF6 /* Base.png */; };
 		B4CBE89819A230DC0036DEF6 /* DWCBS.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CBE89619A230DC0036DEF6 /* DWCBS.png */; };
 		B4CBE8A019A252700036DEF6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CBE89F19A252700036DEF6 /* MapKit.framework */; };
+		B4D3795F19A3D60700292074 /* NHSCUITheme.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D3795E19A3D60700292074 /* NHSCUITheme.m */; };
+		B4D3796019A3F35A00292074 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4D3796219A3F35A00292074 /* Main.storyboard */; };
 		D63DB16E19284EDA00A3BA07 /* NHSCAddressHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D63DB16D19284EDA00A3BA07 /* NHSCAddressHelper.m */; };
 		D63DB1731928570600A3BA07 /* NHSCDonationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63DB1721928570600A3BA07 /* NHSCDonationDetailsViewController.m */; };
 		D63DB17619286C5300A3BA07 /* NHSCNewsMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63DB17519286C5300A3BA07 /* NHSCNewsMainTableViewController.m */; };
@@ -32,7 +34,6 @@
 		D6821BCE19265B5400C079A7 /* AMSlideMenuRightMenuSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D6821BC519265B5400C079A7 /* AMSlideMenuRightMenuSegue.m */; };
 		D6821BCF19265B5400C079A7 /* AMSlideMenuRightTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6821BC719265B5400C079A7 /* AMSlideMenuRightTableViewController.m */; };
 		D6821BD019265B5400C079A7 /* UIViewController+AMSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D6821BC919265B5400C079A7 /* UIViewController+AMSlideMenu.m */; };
-		D6821BD219265B6400C079A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6821BD119265B6400C079A7 /* Main.storyboard */; };
 		D6821BD51926689900C079A7 /* NHSCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6821BD41926689900C079A7 /* NHSCMainViewController.m */; };
 		D6821BDB19266B1B00C079A7 /* NHSCLeftMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6821BDA19266B1B00C079A7 /* NHSCLeftMenuTableViewController.m */; };
 		D6821BDE1926839D00C079A7 /* simpleMenuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D6821BDC1926839D00C079A7 /* simpleMenuButton.png */; };
@@ -90,6 +91,9 @@
 		B4CBE89519A230DC0036DEF6 /* Base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Base.png; sourceTree = "<group>"; };
 		B4CBE89619A230DC0036DEF6 /* DWCBS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DWCBS.png; sourceTree = "<group>"; };
 		B4CBE89F19A252700036DEF6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B4D3795D19A3D60700292074 /* NHSCUITheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCUITheme.h; sourceTree = "<group>"; };
+		B4D3795E19A3D60700292074 /* NHSCUITheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHSCUITheme.m; sourceTree = "<group>"; };
+		B4D3796119A3F35A00292074 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D63DB16C19284EDA00A3BA07 /* NHSCAddressHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCAddressHelper.h; sourceTree = "<group>"; };
 		D63DB16D19284EDA00A3BA07 /* NHSCAddressHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHSCAddressHelper.m; sourceTree = "<group>"; };
 		D63DB1711928570600A3BA07 /* NHSCDonationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCDonationDetailsViewController.h; sourceTree = "<group>"; };
@@ -121,7 +125,6 @@
 		D6821BC719265B5400C079A7 /* AMSlideMenuRightTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSlideMenuRightTableViewController.m; sourceTree = "<group>"; };
 		D6821BC819265B5400C079A7 /* UIViewController+AMSlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AMSlideMenu.h"; sourceTree = "<group>"; };
 		D6821BC919265B5400C079A7 /* UIViewController+AMSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AMSlideMenu.m"; sourceTree = "<group>"; };
-		D6821BD119265B6400C079A7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D6821BD31926689900C079A7 /* NHSCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCMainViewController.h; sourceTree = "<group>"; };
 		D6821BD41926689900C079A7 /* NHSCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHSCMainViewController.m; sourceTree = "<group>"; };
 		D6821BD919266B1B00C079A7 /* NHSCLeftMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCLeftMenuTableViewController.h; sourceTree = "<group>"; };
@@ -207,7 +210,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B4CBE89919A244E50036DEF6 /* popcorn */ = {
+		B4CBE89919A244E50036DEF6 /* Popcorn */ = {
 			isa = PBXGroup;
 			children = (
 				D6821BF41926F4CE00C079A7 /* NHSCPopcornMapLocationViewController.h */,
@@ -217,10 +220,10 @@
 				D66B275F1928848B0060ED61 /* NHSCPopcornDetailsViewController.h */,
 				D66B27601928848B0060ED61 /* NHSCPopcornDetailsViewController.m */,
 			);
-			name = popcorn;
+			name = Popcorn;
 			sourceTree = "<group>";
 		};
-		B4CBE89B19A244FF0036DEF6 /* food donation */ = {
+		B4CBE89B19A244FF0036DEF6 /* Food Donation */ = {
 			isa = PBXGroup;
 			children = (
 				D68E31921928170B0093250A /* NHSCDonationMapLocationViewController.h */,
@@ -230,25 +233,34 @@
 				D63DB1711928570600A3BA07 /* NHSCDonationDetailsViewController.h */,
 				D63DB1721928570600A3BA07 /* NHSCDonationDetailsViewController.m */,
 			);
-			name = "food donation";
+			name = "Food Donation";
 			sourceTree = "<group>";
 		};
-		B4CBE89D19A2450E0036DEF6 /* about us */ = {
+		B4CBE89D19A2450E0036DEF6 /* About Us */ = {
 			isa = PBXGroup;
 			children = (
 				753EF4CC19281A9D00733F0D /* NHSCAboutUsViewController.h */,
 				753EF4CD19281A9D00733F0D /* NHSCAboutUsViewController.m */,
 			);
-			name = "about us";
+			name = "About Us";
 			sourceTree = "<group>";
 		};
-		B4CBE89E19A245150036DEF6 /* contact us */ = {
+		B4CBE89E19A245150036DEF6 /* Contact Us */ = {
 			isa = PBXGroup;
 			children = (
 				753EF4D119283A4C00733F0D /* NHSCContactUsViewController.h */,
 				753EF4D219283A4C00733F0D /* NHSCContactUsViewController.m */,
 			);
-			name = "contact us";
+			name = "Contact Us";
+			sourceTree = "<group>";
+		};
+		B4D3795C19A3D59D00292074 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B4D3795D19A3D60700292074 /* NHSCUITheme.h */,
+				B4D3795E19A3D60700292074 /* NHSCUITheme.m */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 		D63DB16F19284FEE00A3BA07 /* Helpers */ = {
@@ -315,10 +327,11 @@
 		D691186D1926418F00925BB0 = {
 			isa = PBXGroup;
 			children = (
-				B4CBE89E19A245150036DEF6 /* contact us */,
-				B4CBE89D19A2450E0036DEF6 /* about us */,
-				B4CBE89B19A244FF0036DEF6 /* food donation */,
-				B4CBE89919A244E50036DEF6 /* popcorn */,
+				B4D3795C19A3D59D00292074 /* UI */,
+				B4CBE89E19A245150036DEF6 /* Contact Us */,
+				B4CBE89D19A2450E0036DEF6 /* About Us */,
+				B4CBE89B19A244FF0036DEF6 /* Food Donation */,
+				B4CBE89919A244E50036DEF6 /* Popcorn */,
 				D6668B181928715200B3309A /* NewsViews */,
 				D63DB1701928500B00A3BA07 /* TestLocations */,
 				D63DB16F19284FEE00A3BA07 /* Helpers */,
@@ -327,7 +340,7 @@
 				D6821BDA19266B1B00C079A7 /* NHSCLeftMenuTableViewController.m */,
 				D6821BD31926689900C079A7 /* NHSCMainViewController.h */,
 				D6821BD41926689900C079A7 /* NHSCMainViewController.m */,
-				D6821BD119265B6400C079A7 /* Main.storyboard */,
+				B4D3796219A3F35A00292074 /* Main.storyboard */,
 				D6821BBA19265B5400C079A7 /* AMSlideMenu */,
 				D691187F1926418F00925BB0 /* Boy Scouts */,
 				D69118981926418F00925BB0 /* Boy ScoutsTests */,
@@ -511,7 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D68E3191192813DF0093250A /* delete_sign-25.png in Resources */,
-				D6821BD219265B6400C079A7 /* Main.storyboard in Resources */,
+				B4D3796019A3F35A00292074 /* Main.storyboard in Resources */,
 				758C34FA1928F7AD003E9E43 /* 200px-Boy_Scouts_of_America_corporate_trademark.svg.png in Resources */,
 				D68E318F192813440093250A /* checkmark-25.png in Resources */,
 				D6821C011927036D00C079A7 /* UIButtonBarRefresh.png in Resources */,
@@ -569,6 +582,7 @@
 				D63DB1731928570600A3BA07 /* NHSCDonationDetailsViewController.m in Sources */,
 				D6821BDB19266B1B00C079A7 /* NHSCLeftMenuTableViewController.m in Sources */,
 				D63DB16E19284EDA00A3BA07 /* NHSCAddressHelper.m in Sources */,
+				B4D3795F19A3D60700292074 /* NHSCUITheme.m in Sources */,
 				D6821BCD19265B5400C079A7 /* AMSlideMenuMainViewController.m in Sources */,
 				D69118861926418F00925BB0 /* main.m in Sources */,
 			);
@@ -593,6 +607,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B4D3796219A3F35A00292074 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4D3796119A3F35A00292074 /* en */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		D69118821926418F00925BB0 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
