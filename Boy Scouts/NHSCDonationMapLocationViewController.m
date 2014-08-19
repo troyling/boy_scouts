@@ -19,6 +19,8 @@
 
 @synthesize region;
 @synthesize currentLocation;
+bool isDonationViewInitialized = NO; // flag indicating if the map view has been initialized
+double RANGE = 0.20f; // delta used to specidy the range of which range the current location
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,15 +38,15 @@
     // set itself to be the delegate of the map view
     self.mapView.delegate = self;
     
-    // sets the annotaions
-    [self displayAnnotations];
-    
     // initialize current location if necessary
     if (!currentLocation) {
         currentLocation = [self.mapView userLocation];
         region = MKCoordinateRegionMakeWithDistance(currentLocation.location.coordinate, 500, 500);
         [self.mapView setRegion:region animated:NO];
     }
+    
+    // sets the annotaions
+    [self displayAnnotations];
 }
 
 /*
@@ -58,9 +60,18 @@
     // Find locations around from backend
     PFQuery *query = [PFQuery queryWithClassName:@"FoodDonationVisits"];
     
-    // locations should be within a range
+    // specify a range to search for the database
+    double latitudeUpperBound = currentLocation.location.coordinate.latitude + RANGE;
+    double latitudeLowerBound = currentLocation.location.coordinate.latitude - RANGE;
+    double longitudeUpperBound = currentLocation.location.coordinate.longitude + RANGE;
+    double longitudeLowerBound = currentLocation.location.coordinate.longitude - RANGE;
     
-    query.limit = 10;
+    // add query constraints
+    query.limit = 1000;
+    [query whereKey:@"latitude" greaterThanOrEqualTo:@(latitudeLowerBound)];
+    [query whereKey:@"latitude" lessThanOrEqualTo:@(latitudeUpperBound)];
+    [query whereKey:@"longitude" greaterThanOrEqualTo:@(longitudeLowerBound)];
+    [query whereKey:@"longitude" lessThanOrEqualTo:@(longitudeUpperBound)];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *visits, NSError *error) {
         if (!error) {
@@ -165,8 +176,16 @@
     // store the user location
     currentLocation = userLocation;
     
-    region = MKCoordinateRegionMakeWithDistance(userLocation.location.coordinate, 500, 500);
-    [mapView setRegion:region animated:NO];
+    if (!isDonationViewInitialized) {
+        region = MKCoordinateRegionMakeWithDistance(userLocation.location.coordinate, 500, 500);
+        [mapView setRegion:region animated:NO];
+        
+        // This is temporarily placed here, since the location is being updated inside the function
+        [self displayAnnotations];
+        
+        isDonationViewInitialized = YES;
+    }
+    
     
     // remove us as delegate so we don't re-center map each time user moves
     //mapView.delegate = nil;

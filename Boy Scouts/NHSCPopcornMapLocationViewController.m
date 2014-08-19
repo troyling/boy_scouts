@@ -60,8 +60,6 @@ double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range th
     
     // Find locations around from backend
     PFQuery *query = [PFQuery queryWithClassName:@"PopcornVisits"];
-    
-    NSLog(@"%@", currentLocation.location);
 
     // specify a range to search for the database
     double latitudeUpperBound = currentLocation.location.coordinate.latitude + RANGE_DELTA;
