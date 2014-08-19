@@ -20,6 +20,9 @@
 @synthesize region;
 @synthesize currentLocation;
 
+bool isViewInitialized = NO; // flag indicating if the map view has been initialized
+double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range the current location
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,15 +39,15 @@
     // set itself to be the delegate of the map view
     self.mapView.delegate = self;
     
-    // sets the annotaions
-    [self displayAnnotations];
-    
-    // initialize current location if necessary
-    if (!currentLocation) {
+    // initialize current location by using user's location, if necessary
+    if (!currentLocation.location) {
         currentLocation = [self.mapView userLocation];
         region = MKCoordinateRegionMakeWithDistance(currentLocation.location.coordinate, 500, 500);
         [self.mapView setRegion:region animated:NO];
     }
+    
+    // sets the annotaions
+    [self displayAnnotations];
 }
 
 /*
@@ -58,10 +61,20 @@
     // Find locations around from backend
     PFQuery *query = [PFQuery queryWithClassName:@"PopcornVisits"];
     
-    // locations should be within a range
+    NSLog(@"%@", currentLocation.location);
+
+    // specify a range to search for the database
+    double latitudeUpperBound = currentLocation.location.coordinate.latitude + RANGE_DELTA;
+    double latitudeLowerBound = currentLocation.location.coordinate.latitude - RANGE_DELTA;
+    double longitudeUpperBound = currentLocation.location.coordinate.longitude + RANGE_DELTA;
+    double longitudeLowerBound = currentLocation.location.coordinate.longitude - RANGE_DELTA;
     
-    query.limit = 10;
-    
+    // add query constraints
+    query.limit = 1000;
+    [query whereKey:@"latitude" greaterThanOrEqualTo:@(latitudeLowerBound)];
+    [query whereKey:@"latitude" lessThanOrEqualTo:@(latitudeUpperBound)];
+    [query whereKey:@"longitude" greaterThanOrEqualTo:@(longitudeLowerBound)];
+    [query whereKey:@"longitude" lessThanOrEqualTo:@(longitudeUpperBound)];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *visits, NSError *error) {
         if (!error) {
@@ -131,6 +144,8 @@
 - (IBAction)locateButtonClicked:(id)sender {
     region = MKCoordinateRegionMakeWithDistance(currentLocation.location.coordinate, 500, 500);
     [self.mapView setRegion:region animated:YES];
+    
+    // this should update the user's current location and redraw the pins
 }
 
 /*
@@ -143,7 +158,7 @@
         // handle this properly
         return;
     }
-    
+    NSLog(@"%@", currentLocation.location);
     // latitude and longtitude
     NSNumber *latitude = [NSNumber numberWithDouble: currentLocation.location.coordinate.latitude];
     NSNumber *longtitude = [NSNumber numberWithDouble: currentLocation.location.coordinate.longitude];
@@ -279,11 +294,18 @@
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    // store the user location
+    // update the user location
     currentLocation = userLocation;
     
-    region = MKCoordinateRegionMakeWithDistance(userLocation.location.coordinate, 500, 500);
-    [mapView setRegion:region animated:NO];
+    if (!isViewInitialized) {
+        region = MKCoordinateRegionMakeWithDistance(userLocation.location.coordinate, 500, 500);
+        [mapView setRegion:region animated:NO];
+        
+        // This is temporarily placed here, since the location is being updated inside the function
+        [self displayAnnotations];
+        
+        isViewInitialized = YES;
+    }
     
     // remove us as delegate so we don't re-center map each time user moves
     //mapView.delegate = nil;
