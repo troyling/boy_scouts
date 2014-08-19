@@ -141,7 +141,7 @@
             </objects>
             <point key="canvasLocation" x="579" y="34"/>
         </scene>
-        <!--Donation Map Location View Controller - Food Donation-->
+        <!--Donation Map Location View Controller - Scouting for Food-->
         <scene sceneID="wU1-tb-azP">
             <objects>
                 <viewController id="90f-VD-MmA" customClass="NHSCDonationMapLocationViewController" sceneMemberID="viewController">
@@ -182,7 +182,7 @@
                             <constraint firstItem="pXm-uK-mLN" firstAttribute="top" secondItem="qOo-zn-3Dn" secondAttribute="bottom" constant="459" id="umw-q3-wri"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Food Donation" id="xsd-rf-7Gu">
+                    <navigationItem key="navigationItem" title="Scouting for Food" id="xsd-rf-7Gu">
                         <barButtonItem key="rightBarButtonItem" image="center_direction-25.png" id="2jr-Uu-FBH">
                             <connections>
                                 <action selector="locateButtonClicked:" destination="90f-VD-MmA" id="PmK-3Y-KtG"/>
