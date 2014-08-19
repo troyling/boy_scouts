@@ -211,11 +211,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2lT-X8-yVo">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2lT-X8-yVo">
                                 <rect key="frame" x="0.0" y="63" width="320" height="461"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJi-cA-H9H">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJi-cA-H9H">
                                 <rect key="frame" x="160" y="523" width="160" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.1985971606713417" blue="0.22217940273545178" alpha="1" colorSpace="calibratedRGB"/>
@@ -226,13 +226,10 @@
                                     <action selector="noPopcornButtonClicked:" destination="OnZ-eO-0lA" eventType="touchUpInside" id="DBV-jq-pQO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXl-9c-Kxb">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXl-9c-Kxb">
                                 <rect key="frame" x="0.0" y="523" width="160" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.32941176470588235" green="1" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="gTA-Hq-Jtc"/>
-                                </constraints>
                                 <state key="normal" image="checkmark-25.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -242,20 +239,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="lJi-cA-H9H" firstAttribute="leading" secondItem="KXl-9c-Kxb" secondAttribute="trailing" id="3B3-Wg-gA9"/>
-                            <constraint firstItem="KXl-9c-Kxb" firstAttribute="top" secondItem="dad-gL-7XN" secondAttribute="bottom" constant="459" id="Bta-k4-20n"/>
-                            <constraint firstItem="KXl-9c-Kxb" firstAttribute="top" secondItem="lJi-cA-H9H" secondAttribute="top" id="GO9-EW-1nx"/>
-                            <constraint firstItem="2lT-X8-yVo" firstAttribute="top" secondItem="aEc-A1-Msq" secondAttribute="top" constant="63" id="PF7-ed-lXV"/>
-                            <constraint firstItem="KXl-9c-Kxb" firstAttribute="bottom" secondItem="lJi-cA-H9H" secondAttribute="bottom" id="U6m-Fh-FkG"/>
-                            <constraint firstAttribute="trailing" secondItem="2lT-X8-yVo" secondAttribute="trailing" id="asF-Ew-Jqp"/>
-                            <constraint firstItem="KXl-9c-Kxb" firstAttribute="leading" secondItem="2lT-X8-yVo" secondAttribute="leading" id="c8y-aR-npy"/>
-                            <constraint firstItem="2lT-X8-yVo" firstAttribute="trailing" secondItem="lJi-cA-H9H" secondAttribute="trailing" id="gvb-lI-jhs"/>
-                            <constraint firstAttribute="bottom" secondItem="KXl-9c-Kxb" secondAttribute="bottom" id="ph6-aB-kT8"/>
-                            <constraint firstItem="KXl-9c-Kxb" firstAttribute="baseline" secondItem="lJi-cA-H9H" secondAttribute="baseline" id="qJc-ff-j0b"/>
-                            <constraint firstItem="KXl-9c-Kxb" firstAttribute="leading" secondItem="aEc-A1-Msq" secondAttribute="leading" id="vNy-54-geR"/>
-                            <constraint firstItem="djN-Ch-que" firstAttribute="top" secondItem="2lT-X8-yVo" secondAttribute="bottom" constant="44" id="wVa-Qf-ldk"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Popcorn Locations" id="yei-XH-yAE">
                         <barButtonItem key="rightBarButtonItem" image="center_direction-25.png" id="Av2-uM-1qC">
