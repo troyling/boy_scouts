@@ -10,7 +10,7 @@
 #import "NHSCPlaceAnnotation.h"
 #import "NHSCPopcornMapLocationViewController.h"
 
-@interface NHSCPopcornDetailsViewController : UIViewController
+@interface NHSCPopcornDetailsViewController : UIViewController<UIAlertViewDelegate>
 
 @property (weak, nonatomic) NHSCPlaceAnnotation *annotation;
 @property (weak) NHSCPopcornMapLocationViewController *parent;

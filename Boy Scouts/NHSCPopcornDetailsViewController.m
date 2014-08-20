@@ -138,13 +138,29 @@ NSDate *date;
  * untrack this location by removing it from the database
  */
 - (IBAction)untrackLocation:(id)sender {
-    [annotationObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            // go back to the map view
-            [parent displayAnnotations];
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-    }];
+    
+    // alertview asking for confirmation
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Untrack this location" message:@"Are you sure you want to untrack this location? This location will be removed from the map for all Boy Scouts." delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if ([title isEqualToString:@"Yes"]) {
+        // Delete the location from back end
+        [annotationObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                // go back to the map view
+                [parent displayAnnotations];
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failed to untrack this location.." message:@"Unable to remove this location. Please try later." delegate:nil cancelButtonTitle:@"dismiss" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }];
+    }
 }
 
 

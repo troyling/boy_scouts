@@ -10,7 +10,7 @@
 #import "NHSCPlaceAnnotation.h"
 #import "NHSCDonationMapLocationViewController.h"
 
-@interface NHSCDonationDetailsViewController : UIViewController
+@interface NHSCDonationDetailsViewController : UIViewController<UIAlertViewDelegate>
 
 @property (weak, nonatomic) NHSCPlaceAnnotation *annotation;
 @property (weak) NHSCDonationMapLocationViewController *parent;
