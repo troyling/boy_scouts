@@ -56,6 +56,7 @@ double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range th
  * Finds the nearby locations that have record for the popcorn
  */
 - (void)displayAnnotations {
+    [self checkLocationService];
     
     if (isLocationServiceEnabled) {
         // remove all annocations
@@ -107,8 +108,6 @@ double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range th
                 }
             }
         }];
-    } else {
-        [self checkLocationService];
     }
 }
 
@@ -152,19 +151,20 @@ double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range th
 
 // center the user's current location in the map view
 - (IBAction)locateButtonClicked:(id)sender {
+    [self checkLocationService];
+    
     if (isLocationServiceEnabled) {
         region = MKCoordinateRegionMakeWithDistance(currentLocation.location.coordinate, 500, 500);
         [self.mapView setRegion:region animated:YES];
-    } else {
-        [self checkLocationService];
     }
-    
 }
 
 /*
  * Stores user's location and reaction to the database
  */
 - (IBAction)checkButtonClicked:(id)sender {
+    [self checkLocationService];
+    
     if (isLocationServiceEnabled) {
         // latitude and longtitude
         NSNumber *latitude = [NSNumber numberWithDouble: currentLocation.location.coordinate.latitude];
@@ -216,12 +216,11 @@ double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range th
                 }
             }];
         }
-    } else {
-        [self checkLocationService];
     }
 }
 
 - (IBAction)noPopcornButtonClicked:(id)sender {
+    [self checkLocationService];
     
     // check if location service is enabled
     if (isLocationServiceEnabled) {
@@ -280,8 +279,6 @@ double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range th
                 }
             }];
         }
-    } else {
-        [self checkLocationService];
     }
 }
 

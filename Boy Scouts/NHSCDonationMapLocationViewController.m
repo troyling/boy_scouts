@@ -56,6 +56,7 @@ double RANGE = 0.20f; // delta used to specidy the range of which range the curr
  * Finds the nearby locations that have record for the popcorn
  */
 - (void)displayAnnotations {
+    [self checkLocationService];
     
     if (isLocationEnabled) {
         // remove all annocations
@@ -102,18 +103,16 @@ double RANGE = 0.20f; // delta used to specidy the range of which range the curr
                 [[NHSCAlertViewHelper getNetworkErrorAlertView] show];
             }
         }];
-    } else {
-        [self checkLocationService];
     }
 }
 
 // center the user's current location in the map view
 - (IBAction)locateButtonClicked:(id)sender {
+    [self checkLocationService];
+    
     if (isLocationEnabled) {
         region = MKCoordinateRegionMakeWithDistance(currentLocation.location.coordinate, 500, 500);
         [self.mapView setRegion:region animated:YES];
-    } else {
-        [self checkLocationService];
     }
 }
 
@@ -122,6 +121,8 @@ double RANGE = 0.20f; // delta used to specidy the range of which range the curr
  */
 - (IBAction)pickButtonClicked:(id)sender {
     // check if location service is enabled
+    [self checkLocationService];
+    
     if (isLocationEnabled) {
         // latitude and longtitude
         NSNumber *latitude = [NSNumber numberWithDouble: currentLocation.location.coordinate.latitude];
@@ -168,8 +169,6 @@ double RANGE = 0.20f; // delta used to specidy the range of which range the curr
                 }
             }];
         }
-    } else {
-        [self checkLocationService];
     }
 }
 
