@@ -20,6 +20,8 @@
 
 @synthesize region;
 @synthesize currentLocation;
+
+BOOL isLocationEnabled = YES; // flag indicating if location service is enabled
 bool isDonationViewInitialized = NO; // flag indicating if the map view has been initialized
 double RANGE = 0.20f; // delta used to specidy the range of which range the current location
 
@@ -55,120 +57,132 @@ double RANGE = 0.20f; // delta used to specidy the range of which range the curr
  */
 - (void)displayAnnotations {
     
-    // remove all annocations
-    [self.mapView removeAnnotations:self.mapView.annotations];
-    
-    // Find locations around from backend
-    PFQuery *query = [PFQuery queryWithClassName:@"FoodDonationVisits"];
-    
-    // specify a range to search for the database
-    double latitudeUpperBound = currentLocation.location.coordinate.latitude + RANGE;
-    double latitudeLowerBound = currentLocation.location.coordinate.latitude - RANGE;
-    double longitudeUpperBound = currentLocation.location.coordinate.longitude + RANGE;
-    double longitudeLowerBound = currentLocation.location.coordinate.longitude - RANGE;
-    
-    // add query constraints
-    query.limit = 1000;
-    [query whereKey:@"latitude" greaterThanOrEqualTo:@(latitudeLowerBound)];
-    [query whereKey:@"latitude" lessThanOrEqualTo:@(latitudeUpperBound)];
-    [query whereKey:@"longitude" greaterThanOrEqualTo:@(longitudeLowerBound)];
-    [query whereKey:@"longitude" lessThanOrEqualTo:@(longitudeUpperBound)];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *visits, NSError *error) {
-        if (!error) {
-            // populate the visits to the view
-            // Do something with the found objects
-            for (PFObject *visit in visits) {
-                double latitude = [visit[@"latitude"] doubleValue];
-                double longitude = [visit[@"longitude"] doubleValue];
-                NSString *title = visit[@"address"];
-                
-                // creates annotation
-                CLLocationCoordinate2D visitCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
-                
-                NHSCPlaceAnnotation *pin = [[NHSCPlaceAnnotation alloc] init];
-                pin.coordinate = visitCoordinate;
-                pin.title = title;
-                
-                // adds annotation to the map
-                [self.mapView addAnnotation:pin];
+    if (isLocationEnabled) {
+        // remove all annocations
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        
+        // Find locations around from backend
+        PFQuery *query = [PFQuery queryWithClassName:@"FoodDonationVisits"];
+        
+        // specify a range to search for the database
+        double latitudeUpperBound = currentLocation.location.coordinate.latitude + RANGE;
+        double latitudeLowerBound = currentLocation.location.coordinate.latitude - RANGE;
+        double longitudeUpperBound = currentLocation.location.coordinate.longitude + RANGE;
+        double longitudeLowerBound = currentLocation.location.coordinate.longitude - RANGE;
+        
+        // add query constraints
+        query.limit = 1000;
+        [query whereKey:@"latitude" greaterThanOrEqualTo:@(latitudeLowerBound)];
+        [query whereKey:@"latitude" lessThanOrEqualTo:@(latitudeUpperBound)];
+        [query whereKey:@"longitude" greaterThanOrEqualTo:@(longitudeLowerBound)];
+        [query whereKey:@"longitude" lessThanOrEqualTo:@(longitudeUpperBound)];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *visits, NSError *error) {
+            if (!error) {
+                // populate the visits to the view
+                // Do something with the found objects
+                for (PFObject *visit in visits) {
+                    double latitude = [visit[@"latitude"] doubleValue];
+                    double longitude = [visit[@"longitude"] doubleValue];
+                    NSString *title = visit[@"address"];
+                    
+                    // creates annotation
+                    CLLocationCoordinate2D visitCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+                    
+                    NHSCPlaceAnnotation *pin = [[NHSCPlaceAnnotation alloc] init];
+                    pin.coordinate = visitCoordinate;
+                    pin.title = title;
+                    
+                    // adds annotation to the map
+                    [self.mapView addAnnotation:pin];
+                }
+            } else {
+                // error
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                [[NHSCAlertViewHelper getNetworkErrorAlertView] show];
             }
-        } else {
-            // error
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-            [[NHSCAlertViewHelper getNetworkErrorAlertView] show];
-        }
-    }];
-    
+        }];
+    } else {
+        [self checkLocationService];
+    }
 }
 
 // center the user's current location in the map view
 - (IBAction)locateButtonClicked:(id)sender {
-    region = MKCoordinateRegionMakeWithDistance(currentLocation.location.coordinate, 500, 500);
-    [self.mapView setRegion:region animated:YES];
+    if (isLocationEnabled) {
+        region = MKCoordinateRegionMakeWithDistance(currentLocation.location.coordinate, 500, 500);
+        [self.mapView setRegion:region animated:YES];
+    } else {
+        [self checkLocationService];
+    }
 }
 
 /*
  * stores the food pickup location for future pickup
  */
 - (IBAction)pickButtonClicked:(id)sender {
-    // check if location is null;
-    if (currentLocation == nil) {
-        // handle this properly
-        return;
-    }
-    
-    // latitude and longtitude
-    NSNumber *latitude = [NSNumber numberWithDouble: currentLocation.location.coordinate.latitude];
-    NSNumber *longtitude = [NSNumber numberWithDouble: currentLocation.location.coordinate.longitude];
-    
-    // get the formatted address from Google
-    NSString *address = [NHSCAddressHelper getAddressFromLatLon:currentLocation.location.coordinate.latitude withLongitude:currentLocation.location.coordinate.longitude];
-    
-    // query to see if the location has been stored
-    if (address != nil) {
-        PFQuery *query = [PFQuery queryWithClassName:@"FoodDonationVisits"];
-        [query whereKey:@"address" equalTo:address];
+    // check if location service is enabled
+    if (isLocationEnabled) {
+        // latitude and longtitude
+        NSNumber *latitude = [NSNumber numberWithDouble: currentLocation.location.coordinate.latitude];
+        NSNumber *longtitude = [NSNumber numberWithDouble: currentLocation.location.coordinate.longitude];
         
-        [query findObjectsInBackgroundWithBlock:^(NSArray *visits, NSError *error) {
-            if (!error) {
-                // The find succeeded.
-                if (visits.count == 0) {
-                    // no previous entry is in the database.
-                    // save new data to database
-                    PFObject *visit = [PFObject objectWithClassName:@"FoodDonationVisits"];
-                    visit[@"latitude"] = latitude;
-                    visit[@"longitude"] = longtitude;
-                    visit[@"address"] = address;
-                    [visit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                        if(succeeded) {
-                            // creates annotation and updates the view
-                            CLLocationCoordinate2D visitCoordinate = CLLocationCoordinate2DMake(currentLocation.location.coordinate.latitude, currentLocation.location.coordinate.longitude);
-                            
-                            NHSCPlaceAnnotation *pin = [[NHSCPlaceAnnotation alloc] init];
-                            pin.coordinate = visitCoordinate;
-                            pin.title = address;
-                            
-                            // adds annotation to the map
-                            [self.mapView addAnnotation:pin];
-                        }
-                    }];
+        // get the formatted address from Google
+        NSString *address = [NHSCAddressHelper getAddressFromLatLon:currentLocation.location.coordinate.latitude withLongitude:currentLocation.location.coordinate.longitude];
+        
+        // query to see if the location has been stored
+        if (address != nil) {
+            PFQuery *query = [PFQuery queryWithClassName:@"FoodDonationVisits"];
+            [query whereKey:@"address" equalTo:address];
+            
+            [query findObjectsInBackgroundWithBlock:^(NSArray *visits, NSError *error) {
+                if (!error) {
+                    // The find succeeded.
+                    if (visits.count == 0) {
+                        // no previous entry is in the database.
+                        // save new data to database
+                        PFObject *visit = [PFObject objectWithClassName:@"FoodDonationVisits"];
+                        visit[@"latitude"] = latitude;
+                        visit[@"longitude"] = longtitude;
+                        visit[@"address"] = address;
+                        [visit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            if(succeeded) {
+                                // creates annotation and updates the view
+                                CLLocationCoordinate2D visitCoordinate = CLLocationCoordinate2DMake(currentLocation.location.coordinate.latitude, currentLocation.location.coordinate.longitude);
+                                
+                                NHSCPlaceAnnotation *pin = [[NHSCPlaceAnnotation alloc] init];
+                                pin.coordinate = visitCoordinate;
+                                pin.title = address;
+                                
+                                // adds annotation to the map
+                                [self.mapView addAnnotation:pin];
+                            }
+                        }];
+                    } else {
+                        // do nothing
+                    }
                 } else {
-                    // do nothing
+                    // Log details of the failure
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                    [[NHSCAlertViewHelper getNetworkErrorAlertView] show];
                 }
-            } else {
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-                [[NHSCAlertViewHelper getNetworkErrorAlertView] show];
-            }
-        }];
+            }];
+        }
+    } else {
+        [self checkLocationService];
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // check to see if Location Services is enabled, there are two state possibilities:
-    // 1) disabled for entire device, 2) disabled just for this app
-    //
+    [self checkLocationService];
+}
+
+// check to see if Location Services is enabled, there are two state possibilities:
+// 1) disabled for entire device, 2) disabled just for this app
+//
+- (void)checkLocationService
+{
+    
     NSString *causeStr = nil;
     
     // check whether location services are enabled on the device
@@ -186,18 +200,14 @@ double RANGE = 0.20f; // delta used to specidy the range of which range the curr
         // All is okay
     }
     
-    if (causeStr != nil)
-    {
+    if (causeStr != nil) {
         // set location service flag
+        isLocationEnabled = NO;
         
-        NSString *alertMessage = [NSString stringWithFormat:@"You currently have location services disabled for this %@. Please refer to \"Settings\" app to turn on Location Services.", causeStr];
-        
-        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled"
-                                                                        message:alertMessage
-                                                                       delegate:nil
-                                                              cancelButtonTitle:@"OK"
-                                                              otherButtonTitles:nil];
-        [servicesDisabledAlert show];
+        // Alert message
+        [[NHSCAlertViewHelper getLocationErrorAlertView:causeStr] show];
+    } else {
+        isLocationEnabled = YES;
     }
 }
 

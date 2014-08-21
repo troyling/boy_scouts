@@ -152,8 +152,13 @@ double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range th
 
 // center the user's current location in the map view
 - (IBAction)locateButtonClicked:(id)sender {
-    region = MKCoordinateRegionMakeWithDistance(currentLocation.location.coordinate, 500, 500);
-    [self.mapView setRegion:region animated:YES];
+    if (isLocationServiceEnabled) {
+        region = MKCoordinateRegionMakeWithDistance(currentLocation.location.coordinate, 500, 500);
+        [self.mapView setRegion:region animated:YES];
+    } else {
+        [self checkLocationService];
+    }
+    
 }
 
 /*
