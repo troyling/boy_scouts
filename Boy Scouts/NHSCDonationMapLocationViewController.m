@@ -165,6 +165,42 @@ double RANGE = 0.20f; // delta used to specidy the range of which range the curr
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    // check to see if Location Services is enabled, there are two state possibilities:
+    // 1) disabled for entire device, 2) disabled just for this app
+    //
+    NSString *causeStr = nil;
+    
+    // check whether location services are enabled on the device
+    if ([CLLocationManager locationServicesEnabled] == NO)
+    {
+        causeStr = @"device";
+    }
+    // check the application’s explicit authorization status:
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
+    {
+        causeStr = @"app";
+    }
+    else
+    {
+        // All is okay
+    }
+    
+    if (causeStr != nil)
+    {
+        // set location service flag
+        
+        NSString *alertMessage = [NSString stringWithFormat:@"You currently have location services disabled for this %@. Please refer to \"Settings\" app to turn on Location Services.", causeStr];
+        
+        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled"
+                                                                        message:alertMessage
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil];
+        [servicesDisabledAlert show];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

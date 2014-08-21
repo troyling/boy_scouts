@@ -20,5 +20,20 @@
     return alert;
 }
 
+/**
+ * Return a alert view indicating network service is disabled
+ */
++ (UIAlertView *)getLocationErrorAlertView:(NSString *)causeStr
+{
+    NSString *alertMessage = [NSString stringWithFormat:@"You currently have location services disabled for this %@. Please refer to \"Settings\" app to turn on Location Services.", causeStr];
+    
+    UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled"
+                                                                    message:alertMessage
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+    return servicesDisabledAlert;
+}
+
 
 @end

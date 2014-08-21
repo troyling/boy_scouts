@@ -11,5 +11,6 @@
 @interface NHSCAlertViewHelper : NSObject
 
 + (UIAlertView *)getNetworkErrorAlertView;
++ (UIAlertView *)getLocationErrorAlertView:(NSString *)causeStr;
 
 @end
