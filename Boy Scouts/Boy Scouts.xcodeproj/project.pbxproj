@@ -10,6 +10,7 @@
 		753EF4CE19281A9D00733F0D /* NHSCAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 753EF4CD19281A9D00733F0D /* NHSCAboutUsViewController.m */; };
 		753EF4D319283A4C00733F0D /* NHSCContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 753EF4D219283A4C00733F0D /* NHSCContactUsViewController.m */; };
 		758C34FA1928F7AD003E9E43 /* 200px-Boy_Scouts_of_America_corporate_trademark.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 758C34F91928F7AD003E9E43 /* 200px-Boy_Scouts_of_America_corporate_trademark.svg.png */; };
+		B44DE37119A635F400181803 /* NHSCAlertViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B44DE37019A635F400181803 /* NHSCAlertViewHelper.m */; };
 		B4CBE89419A230A10036DEF6 /* DWCheaderlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CBE89319A230A10036DEF6 /* DWCheaderlogo.png */; };
 		B4CBE89719A230DC0036DEF6 /* Base.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CBE89519A230DC0036DEF6 /* Base.png */; };
 		B4CBE89819A230DC0036DEF6 /* DWCBS.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CBE89619A230DC0036DEF6 /* DWCBS.png */; };
@@ -87,6 +88,8 @@
 		753EF4D119283A4C00733F0D /* NHSCContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCContactUsViewController.h; sourceTree = "<group>"; };
 		753EF4D219283A4C00733F0D /* NHSCContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHSCContactUsViewController.m; sourceTree = "<group>"; };
 		758C34F91928F7AD003E9E43 /* 200px-Boy_Scouts_of_America_corporate_trademark.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "200px-Boy_Scouts_of_America_corporate_trademark.svg.png"; sourceTree = "<group>"; };
+		B44DE36F19A635F400181803 /* NHSCAlertViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHSCAlertViewHelper.h; sourceTree = "<group>"; };
+		B44DE37019A635F400181803 /* NHSCAlertViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHSCAlertViewHelper.m; sourceTree = "<group>"; };
 		B4CBE89319A230A10036DEF6 /* DWCheaderlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DWCheaderlogo.png; sourceTree = "<group>"; };
 		B4CBE89519A230DC0036DEF6 /* Base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Base.png; sourceTree = "<group>"; };
 		B4CBE89619A230DC0036DEF6 /* DWCBS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DWCBS.png; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 			children = (
 				D63DB16C19284EDA00A3BA07 /* NHSCAddressHelper.h */,
 				D63DB16D19284EDA00A3BA07 /* NHSCAddressHelper.m */,
+				B44DE36F19A635F400181803 /* NHSCAlertViewHelper.h */,
+				B44DE37019A635F400181803 /* NHSCAlertViewHelper.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -579,6 +584,7 @@
 				D691188A1926418F00925BB0 /* NHSCAppDelegate.m in Sources */,
 				D6821BCB19265B5400C079A7 /* AMSlideMenuLeftMenuSegue.m in Sources */,
 				D6821BD019265B5400C079A7 /* UIViewController+AMSlideMenu.m in Sources */,
+				B44DE37119A635F400181803 /* NHSCAlertViewHelper.m in Sources */,
 				D63DB1731928570600A3BA07 /* NHSCDonationDetailsViewController.m in Sources */,
 				D6821BDB19266B1B00C079A7 /* NHSCLeftMenuTableViewController.m in Sources */,
 				D63DB16E19284EDA00A3BA07 /* NHSCAddressHelper.m in Sources */,
