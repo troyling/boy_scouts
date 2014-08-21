@@ -10,6 +10,7 @@
 #import "NHSCPlaceAnnotation.h"
 #import "NHSCAddressHelper.h"
 #import "NHSCDonationDetailsViewController.h"
+#import "NHSCAlertViewHelper.h"
 
 @interface NHSCDonationMapLocationViewController ()
 
@@ -76,8 +77,6 @@ double RANGE = 0.20f; // delta used to specidy the range of which range the curr
     [query findObjectsInBackgroundWithBlock:^(NSArray *visits, NSError *error) {
         if (!error) {
             // populate the visits to the view
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)visits.count);
             // Do something with the found objects
             for (PFObject *visit in visits) {
                 double latitude = [visit[@"latitude"] doubleValue];
@@ -97,6 +96,7 @@ double RANGE = 0.20f; // delta used to specidy the range of which range the curr
         } else {
             // error
             NSLog(@"Error: %@ %@", error, [error userInfo]);
+            [[NHSCAlertViewHelper getNetworkErrorAlertView] show];
         }
     }];
     
@@ -126,41 +126,43 @@ double RANGE = 0.20f; // delta used to specidy the range of which range the curr
     NSString *address = [NHSCAddressHelper getAddressFromLatLon:currentLocation.location.coordinate.latitude withLongitude:currentLocation.location.coordinate.longitude];
     
     // query to see if the location has been stored
-    PFQuery *query = [PFQuery queryWithClassName:@"FoodDonationVisits"];
-    [query whereKey:@"address" equalTo:address];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *visits, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)visits.count);
-            if (visits.count == 0) {
-                // no previous entry is in the database.
-                // save new data to database
-                PFObject *visit = [PFObject objectWithClassName:@"FoodDonationVisits"];
-                visit[@"latitude"] = latitude;
-                visit[@"longitude"] = longtitude;
-                visit[@"address"] = address;
-                [visit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if(succeeded) {
-                        // creates annotation and updates the view
-                        CLLocationCoordinate2D visitCoordinate = CLLocationCoordinate2DMake(currentLocation.location.coordinate.latitude, currentLocation.location.coordinate.longitude);
-                        
-                        NHSCPlaceAnnotation *pin = [[NHSCPlaceAnnotation alloc] init];
-                        pin.coordinate = visitCoordinate;
-                        pin.title = address;
-                        
-                        // adds annotation to the map
-                        [self.mapView addAnnotation:pin];
-                    }
-                }];
+    if (address != nil) {
+        PFQuery *query = [PFQuery queryWithClassName:@"FoodDonationVisits"];
+        [query whereKey:@"address" equalTo:address];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *visits, NSError *error) {
+            if (!error) {
+                // The find succeeded.
+                if (visits.count == 0) {
+                    // no previous entry is in the database.
+                    // save new data to database
+                    PFObject *visit = [PFObject objectWithClassName:@"FoodDonationVisits"];
+                    visit[@"latitude"] = latitude;
+                    visit[@"longitude"] = longtitude;
+                    visit[@"address"] = address;
+                    [visit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if(succeeded) {
+                            // creates annotation and updates the view
+                            CLLocationCoordinate2D visitCoordinate = CLLocationCoordinate2DMake(currentLocation.location.coordinate.latitude, currentLocation.location.coordinate.longitude);
+                            
+                            NHSCPlaceAnnotation *pin = [[NHSCPlaceAnnotation alloc] init];
+                            pin.coordinate = visitCoordinate;
+                            pin.title = address;
+                            
+                            // adds annotation to the map
+                            [self.mapView addAnnotation:pin];
+                        }
+                    }];
+                } else {
+                    // do nothing
+                }
             } else {
-                // do nothing
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                [[NHSCAlertViewHelper getNetworkErrorAlertView] show];
             }
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -74,7 +74,20 @@ NSDate *dateToPickup;
                     // set up the view
                     [self loadAnnotation];
                 }
+            } else if (visits.count > 1) {
+                PFObject *visit = visits[0];
+                address = visit[@"address"];
+                note = visit[@"note"];
+                dateToPickup = visit.createdAt;
                 
+                // adds a week to the created date
+                NSCalendar *calendar=[NSCalendar currentCalendar];
+                NSDateComponents *components = [[NSDateComponents alloc]init];
+                components.day = 7;
+                dateToPickup =[calendar dateByAddingComponents:components toDate:dateToPickup options:0];
+                
+                // set up the view
+                [self loadAnnotation];
             }
         } else {
             // Log details of the failure

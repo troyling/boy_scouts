@@ -9,6 +9,7 @@
 #import "NHSCPopcornDetailsViewController.h"
 #import "NHSCPopcornNoteViewController.h"
 #import "NHSCUITheme.h"
+#import "NHSCAlertViewHelper.h"
 
 @interface NHSCPopcornDetailsViewController ()
 
@@ -80,7 +81,7 @@ NSDate *date;
             }
         } else {
             // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            [[NHSCAlertViewHelper getNetworkErrorAlertView] show];
         }
     }];
 }
