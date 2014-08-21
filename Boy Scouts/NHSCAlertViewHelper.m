@@ -16,7 +16,7 @@
  */
 + (UIAlertView *)getNetworkErrorAlertView
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error.." message:@"Unable to connect to server. Please check your network connection and try it again." delegate:nil cancelButtonTitle:@"Dimiss" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error.." message:@"Unable to connect with the server. Please check your network connection and try again." delegate:nil cancelButtonTitle:@"Dimiss" otherButtonTitles:nil, nil];
     return alert;
 }
 

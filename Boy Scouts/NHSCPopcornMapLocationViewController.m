@@ -10,6 +10,7 @@
 #import "NHSCPlaceAnnotation.h"
 #import "NHSCAddressHelper.h"
 #import "NHSCPopcornDetailsViewController.h"
+#import "NHSCAlertViewHelper.h"
 
 @interface NHSCPopcornMapLocationViewController ()
 
@@ -78,7 +79,6 @@ double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range th
         if (!error) {
             // populate the visits to the view
             // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)visits.count);
             // Do something with the found objects
             for (PFObject *visit in visits) {
                 double latitude = [visit[@"latitude"] doubleValue];
@@ -99,7 +99,10 @@ double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range th
             }
         } else {
             // error
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            if ([error code] == kPFErrorConnectionFailed) {
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                [[NHSCAlertViewHelper getNetworkErrorAlertView] show];
+            }
         }
     }];
 }
@@ -142,21 +145,17 @@ double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range th
 - (IBAction)locateButtonClicked:(id)sender {
     region = MKCoordinateRegionMakeWithDistance(currentLocation.location.coordinate, 500, 500);
     [self.mapView setRegion:region animated:YES];
-    
-    // this should update the user's current location and redraw the pins
 }
 
 /*
  * Stores user's location and reaction to the database
  */
 - (IBAction)checkButtonClicked:(id)sender {
-    
     // check if location is null;
     if (currentLocation == nil) {
         // handle this properly
         return;
     }
-    NSLog(@"%@", currentLocation.location);
     // latitude and longtitude
     NSNumber *latitude = [NSNumber numberWithDouble: currentLocation.location.coordinate.latitude];
     NSNumber *longtitude = [NSNumber numberWithDouble: currentLocation.location.coordinate.longitude];
@@ -165,55 +164,48 @@ double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range th
     NSString *address = [NHSCAddressHelper getAddressFromLatLon:currentLocation.location.coordinate.latitude withLongitude:currentLocation.location.coordinate.longitude];
     
     // query to see if the location has been stored
-    PFQuery *query = [PFQuery queryWithClassName:@"PopcornVisits"];
-    //    [query whereKey:@"latitude" equalTo:latitude];
-    //    [query whereKey:@"longtitude" equalTo:longtitude];
-    [query whereKey:@"address" equalTo:address];
-    
-    // fire the request to the our back end
-    [query findObjectsInBackgroundWithBlock:^(NSArray *visits, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)visits.count);
-            if (visits.count == 0) {
-                // no previous entry is in the database.
-                // save new data to database
-                PFObject *visit = [PFObject objectWithClassName:@"PopcornVisits"];
-                visit[@"latitude"] = latitude;
-                visit[@"longitude"] = longtitude;
-                visit[@"reaction"] = @YES;
-                visit[@"address"] = address;
-                [visit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if(succeeded) {
-                        [self displayAnnotations];
+    if (address != nil) {
+        PFQuery *query = [PFQuery queryWithClassName:@"PopcornVisits"];
+        [query whereKey:@"address" equalTo:address];
+        
+        // fire the request to the our back end
+        [query findObjectsInBackgroundWithBlock:^(NSArray *visits, NSError *error) {
+            if (!error) {
+                // The find succeeded.
+                if (visits.count == 0) {
+                    // no previous entry is in the database.
+                    // save new data to database
+                    PFObject *visit = [PFObject objectWithClassName:@"PopcornVisits"];
+                    visit[@"latitude"] = latitude;
+                    visit[@"longitude"] = longtitude;
+                    visit[@"reaction"] = @YES;
+                    visit[@"address"] = address;
+                    [visit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if(succeeded) {
+                            [self displayAnnotations];
+                        }
+                    }];
+                } else if (visits.count == 1) {
+                    // update the reactino if necessary
+                    for (PFObject *visit in visits) {
+                        if ([visit[@"reaction"]  isEqual: @NO]) {
+                            visit[@"reaction"] = @YES;
+                            [visit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                if(succeeded) {
+                                    [self displayAnnotations];
+                                }
+                            }];
+                        }
                     }
-                }];
-                
-                // add annotation to the map
-                //                [self displayAnnotations];
-            } else if (visits.count == 1) {
-                // update the reactino if necessary
-                for (PFObject *visit in visits) {
-                    if ([visit[@"reaction"]  isEqual: @NO]) {
-                        visit[@"reaction"] = @YES;
-                        [visit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                            if(succeeded) {
-                                [self displayAnnotations];
-                            }
-                        }];
-                    }
+                } else {
+                    // multiple instances, should do nothing
                 }
-                
-                // update the annotation to the map
-                
             } else {
-                // multiple instances, should do nothing
+                // Log details of the failure
+                [[NHSCAlertViewHelper getNetworkErrorAlertView] show];
             }
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+        }];
+    }
 }
 
 - (IBAction)noPopcornButtonClicked:(id)sender {
@@ -232,54 +224,53 @@ double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range th
     NSString *address = [NHSCAddressHelper getAddressFromLatLon:currentLocation.location.coordinate.latitude withLongitude:currentLocation.location.coordinate.longitude];
     
     // query to see if the location has been stored
-    PFQuery *query = [PFQuery queryWithClassName:@"PopcornVisits"];
-    //    [query whereKey:@"latitude" equalTo:latitude];
-    //    [query whereKey:@"longtitude" equalTo:longtitude];
-    [query whereKey:@"address" equalTo:address];
-    
-    // fire the request to the our back end
-    [query findObjectsInBackgroundWithBlock:^(NSArray *visits, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)visits.count);
-            if (visits.count == 0) {
-                // no previous entry is in the database.
-                // save data to database
-                PFObject *visit = [PFObject objectWithClassName:@"PopcornVisits"];
-                visit[@"latitude"] = latitude;
-                visit[@"longitude"] = longtitude;
-                visit[@"reaction"] = @NO;
-                visit[@"address"] = address;
-                //                [visit saveInBackground];
-                
-                [visit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if(succeeded) {
-                        [self displayAnnotations];
+    if (address != nil) {
+        PFQuery *query = [PFQuery queryWithClassName:@"PopcornVisits"];
+        //    [query whereKey:@"latitude" equalTo:latitude];
+        //    [query whereKey:@"longtitude" equalTo:longtitude];
+        [query whereKey:@"address" equalTo:address];
+        
+        // fire the request to the our back end
+        [query findObjectsInBackgroundWithBlock:^(NSArray *visits, NSError *error) {
+            if (!error) {
+                // The find succeeded.
+                if (visits.count == 0) {
+                    // no previous entry is in the database.
+                    // save data to database
+                    PFObject *visit = [PFObject objectWithClassName:@"PopcornVisits"];
+                    visit[@"latitude"] = latitude;
+                    visit[@"longitude"] = longtitude;
+                    visit[@"reaction"] = @NO;
+                    visit[@"address"] = address;
+                    //                [visit saveInBackground];
+                    
+                    [visit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if(succeeded) {
+                            [self displayAnnotations];
+                        }
+                    }];
+                } else if (visits.count == 1) {
+                    // update the reactino if necessary
+                    for (PFObject *visit in visits) {
+                        if ([visit[@"reaction"]  isEqual: @YES]) {
+                            visit[@"reaction"] = @NO;
+                            [visit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                if(succeeded) {
+                                    [self displayAnnotations];
+                                }
+                            }];
+                        }
                     }
-                }];
-                
-                // add annotations
-                
-            } else if (visits.count == 1) {
-                // update the reactino if necessary
-                for (PFObject *visit in visits) {
-                    if ([visit[@"reaction"]  isEqual: @YES]) {
-                        visit[@"reaction"] = @NO;
-                        [visit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                            if(succeeded) {
-                                [self displayAnnotations];
-                            }
-                        }];
-                    }
+                } else {
+                    // multiple instances, should do nothing
                 }
             } else {
-                // multiple instances, should do nothing
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                [[NHSCAlertViewHelper getNetworkErrorAlertView] show];
             }
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning

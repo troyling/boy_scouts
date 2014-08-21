@@ -28,7 +28,6 @@ PFObject *annotationObj;
 NSString *address;
 NSDate *date;
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -69,6 +68,15 @@ NSDate *date;
                     // set up the view
                     [self loadAnnotation];
                 }
+            } else if (visits.count > 1) {
+                PFObject *visit = visits[0];
+                annotationObj = visit;
+                address = visit[@"address"];
+                note = visit[@"note"];
+                date = visit.createdAt;
+                
+                // set up the view
+                [self loadAnnotation];
             }
         } else {
             // Log details of the failure

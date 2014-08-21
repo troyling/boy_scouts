@@ -7,6 +7,7 @@
 //
 
 #import "NHSCAddressHelper.h"
+#import "NHSCAlertViewHelper.h"
 
 @implementation NHSCAddressHelper
 
@@ -16,7 +17,7 @@
  */
 +(NSString *)getAddressFromLatLon:(double)pdblLatitude withLongitude:(double)pdblLongitude
 {
-    NSString *address;
+    NSString *address = nil;
     NSError* error;
     
     // retrieve the name for the location
@@ -25,12 +26,14 @@
     NSString *urlString = [NSString stringWithFormat: @"https://maps.googleapis.com/maps/api/geocode/json?latlng=%f,%f&sensor=true", pdblLatitude, pdblLongitude];
     NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] encoding:NSASCIIStringEncoding error:&error];
     
-    // parse jason object
-    NSData *data = [locationString dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     if (error){
-        NSLog(@"Some error %ld", error.code);
+        // network is not available
+        [[NHSCAlertViewHelper getNetworkErrorAlertView] show];
+        
     } else {
+        // parse jason object
+        NSData *data = [locationString dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         address = [[json objectForKey:@"results"] valueForKey:@"formatted_address"][0];
     }
     
