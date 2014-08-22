@@ -147,6 +147,10 @@ double RANGE_DELTA = 0.20f; // delta used to specidy the range of which range th
     } else {
         isLocationServiceEnabled = YES;
     }
+    
+    if (!currentLocation) {
+        currentLocation = [self.mapView userLocation];
+    }
 }
 
 // center the user's current location in the map view

@@ -208,6 +208,10 @@ double RANGE = 0.20f; // delta used to specidy the range of which range the curr
     } else {
         isLocationEnabled = YES;
     }
+    
+    if (!currentLocation) {
+        currentLocation = [self.mapView userLocation];
+    }
 }
 
 - (void)didReceiveMemoryWarning
